@@ -4,28 +4,56 @@
 
 html.dark {
     --iti-arrow-color: white;
-    --iti-border-color: rgb(17 24 39 var(--tw-bg-opacity, 1));
+    --iti-border-color: rgba(17, 24, 39, 1); /* text-gray-900 (черно-серый) */
 }
 
-html.dark [type="text"], html.dark [type="email"], html.dark [type="url"], html.dark [type="password"], html.dark [type="number"], html.dark [type="date"], html.dark [type="datetime-local"], html.dark [type="month"], html.dark [type="search"], html.dark [type="tel"], html.dark [type="time"], html.dark [type="week"], html.dark [multiple], html.dark textarea, html.dark select {
-    background-color: rgb(75 85 99 var(--tw-bg-opacity, 1));
+html.dark [type="text"],
+html.dark [type="email"],
+html.dark [type="url"],
+html.dark [type="password"],
+html.dark [type="number"],
+html.dark [type="date"],
+html.dark [type="datetime-local"],
+html.dark [type="month"],
+html.dark [type="search"],
+html.dark [type="tel"],
+html.dark [type="time"],
+html.dark [type="week"],
+html.dark [multiple],
+html.dark textarea,
+html.dark select {
+    background-color: rgba(75, 85, 99, 1); /* bg-gray-600 */
     color: white;
 }
 
-html.dark [type="text"]::placeholder, html.dark [type="email"]::placeholder, html.dark [type="url"]::placeholder, html.dark [type="password"]::placeholder, html.dark [type="number"]::placeholder, html.dark [type="date"]::placeholder, html.dark [type="datetime-local"]::placeholder, html.dark [type="month"]::placeholder, html.dark [type="search"]::placeholder, html.dark [type="tel"]::placeholder, html.dark [type="time"]::placeholder, html.dark [type="week"]::placeholder, html.dark [multiple]::placeholder, html.dark textarea::placeholder, html.dark select::placeholder {
+html.dark [type="text"]::placeholder,
+html.dark [type="email"]::placeholder,
+html.dark [type="url"]::placeholder,
+html.dark [type="password"]::placeholder,
+html.dark [type="number"]::placeholder,
+html.dark [type="date"]::placeholder,
+html.dark [type="datetime-local"]::placeholder,
+html.dark [type="month"]::placeholder,
+html.dark [type="search"]::placeholder,
+html.dark [type="tel"]::placeholder,
+html.dark [type="time"]::placeholder,
+html.dark [type="week"]::placeholder,
+html.dark [multiple]::placeholder,
+html.dark textarea::placeholder,
+html.dark select::placeholder {
     color: white;
 }
 
 html.dark .iti__country {
-    background-color: rgb(75 85 99 var(--tw-bg-opacity, 1));
+    background-color: rgba(75, 85, 99, 1); /* bg-gray-600 */
     color: white;
 }
 
 html.dark .iti__country.iti__highlight {
-    background-color: rgb(17 24 39 var(--tw-bg-opacity, 1));
+    background-color: rgba(17, 24, 39, 1); /* bg-gray-900 */
     color: white;
 }
 
 html.dark .iti--laravel-tel-input::placeholder {
-    color: rgb(156 163 175 var(--tw-bg-opacity, 1));
+    color: rgba(156, 163, 175, 1); /* text-gray-400 */
 }
