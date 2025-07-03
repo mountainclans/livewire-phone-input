@@ -2,6 +2,7 @@
 
 namespace MountainClans\LivewirePhoneInput;
 
+use Illuminate\Support\Facades\Blade;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
@@ -11,7 +12,11 @@ class LivewirePhoneInputServiceProvider extends PackageServiceProvider
     {
         $package
             ->name('livewire-phone-input')
-            ->hasConfigFile()
             ->hasViews();
+    }
+
+    public function packageBooted(): void
+    {
+        Blade::component('livewire-phone-input::components/phone-input', 'ui.phone-input');
     }
 }
