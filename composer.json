@@ -30,14 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-            "MountainClans\\LivewirePhoneInput\\": "src/",
-            "MountainClans\\LivewirePhoneInput\\Database\\Factories\\": "database/factories/"
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "MountainClans\\LivewirePhoneInput\\Tests\\": "tests/",
-            "Workbench\\App\\": "workbench/app/"
+            "MountainClans\\LivewirePhoneInput\\": "src/"
         }
     },
     "scripts": {
@@ -59,10 +52,7 @@
         "laravel": {
             "providers": [
                 "MountainClans\\LivewirePhoneInput\\LivewirePhoneInputServiceProvider"
-            ],
-            "aliases": {
-                "LivewirePhoneInput": "MountainClans\\LivewirePhoneInput\\Facades\\LivewirePhoneInput"
-            }
+            ]
         }
     },
     "minimum-stability": "dev",
