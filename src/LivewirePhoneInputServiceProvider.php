@@ -12,6 +12,6 @@ class LivewirePhoneInputServiceProvider extends PackageServiceProvider
         $package
             ->name('livewire-phone-input')
             ->hasConfigFile()
-            ->hasViews('ui');
+            ->hasViews();
     }
 }

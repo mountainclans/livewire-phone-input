@@ -19,7 +19,7 @@ npm install intl-tel-input --save
 
 ```js
 import intlTelInput from 'intl-tel-input/intlTelInputWithUtils';
-import phoneInput from '/vendor/mountainclans/livewire-phone-input/resources/js/phoneInput';
+import '../../vendor/mountainclans/livewire-phone-input/resources/js/phoneInput';
 window.intlTelInput = window.intlTelInputGlobals = intlTelInput;
 ```
 
@@ -27,7 +27,7 @@ window.intlTelInput = window.intlTelInputGlobals = intlTelInput;
 
 ```
 @import 'intl-tel-input/build/css/intlTelInput.css';
-@import '/vendor/mountainclans/livewire-phone-input/resources/css/phoneInput.css';
+@import '../../vendor/mountainclans/livewire-phone-input/resources/css/phoneInput.css';
 ```
 _Обратите внимание, что для корректной стилизации в вашем проекте должен использоваться TailwindCSS._
 
