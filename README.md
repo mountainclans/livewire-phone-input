@@ -1,4 +1,5 @@
 # Phone input component for Livewire 3
+Доработанная под использование с Vite версия компонента телефонного ввода 
 
 ## Установка
 
@@ -14,24 +15,23 @@ composer require mountainclans/livewire-phone-input
 npm install intl-tel-input --save
 ```
 
-**Обязательно** опубликуйте ассеты:
-```bash
-php artisan vendor:publish --tag=livewire-phone-input-assets
-```
-
 Добавьте в файл проекта `resources/js/app.js` строки
 
 ```js
 import intlTelInput from 'intl-tel-input/intlTelInputWithUtils';
-import phoneInput from '/vendor/mountainclans/livewire-phone-input/resources/js/phoneInput'
+import phoneInput from '/vendor/mountainclans/livewire-phone-input/resources/js/phoneInput';
+window.intlTelInput = window.intlTelInputGlobals = intlTelInput;
 ```
 
-Добавьте в файл проекта `resources/js/app.css` строку
+Добавьте в файл проекта `resources/js/app.css` строки:
 
 ```
 @import 'intl-tel-input/build/css/intlTelInput.css';
+@import '/vendor/mountainclans/livewire-phone-input/resources/css/phoneInput.css';
 ```
+_Обратите внимание, что для корректной стилизации в вашем проекте должен использоваться TailwindCSS._
 
+---
 
 Опционально, вы можете опубликовать view командой
 
