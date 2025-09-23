@@ -2,9 +2,18 @@
     width: 100%;
 }
 
+.iti__search-input {
+    padding: 5px 10px;
+    border: rgba(156, 163, 175, 1) 2px solid;
+    box-sizing: border-box;
+    box-shadow: none;
+    outline: none;
+    border-radius: 0;
+}
+
 html.dark {
     --iti-arrow-color: white;
-    --iti-border-color: rgba(17, 24, 39, 1); /* text-gray-900 (черно-серый) */
+    --iti-border-color: rgba(17, 24, 39, 1);
 }
 
 html.dark [type="text"],
@@ -22,7 +31,7 @@ html.dark [type="week"],
 html.dark [multiple],
 html.dark textarea,
 html.dark select {
-    background-color: rgba(75, 85, 99, 1); /* bg-gray-600 */
+    background-color: rgba(75, 85, 99, 1);
     color: white;
 }
 
@@ -45,15 +54,71 @@ html.dark select::placeholder {
 }
 
 html.dark .iti__country {
-    background-color: rgba(75, 85, 99, 1); /* bg-gray-600 */
+    background-color: rgba(75, 85, 99, 1);
     color: white;
 }
 
 html.dark .iti__country.iti__highlight {
-    background-color: rgba(17, 24, 39, 1); /* bg-gray-900 */
+    background-color: rgba(17, 24, 39, 1);
     color: white;
 }
 
 html.dark .iti--laravel-tel-input::placeholder {
-    color: rgba(156, 163, 175, 1); /* text-gray-400 */
+    color: rgba(156, 163, 175, 1);
+}
+
+html {
+    --iti-arrow-color: white;
+    --iti-border-color: rgba(17, 24, 39, 1);
+}
+
+html [type="text"],
+html [type="email"],
+html [type="url"],
+html [type="password"],
+html [type="number"],
+html [type="date"],
+html [type="datetime-local"],
+html [type="month"],
+html [type="search"],
+html [type="tel"],
+html [type="time"],
+html [type="week"],
+html [multiple],
+html textarea,
+html select {
+    background-color: white;
+    color: rgb(51, 49, 48);
+}
+
+html [type="text"]::placeholder,
+html [type="email"]::placeholder,
+html [type="url"]::placeholder,
+html [type="password"]::placeholder,
+html [type="number"]::placeholder,
+html [type="date"]::placeholder,
+html [type="datetime-local"]::placeholder,
+html [type="month"]::placeholder,
+html [type="search"]::placeholder,
+html [type="tel"]::placeholder,
+html [type="time"]::placeholder,
+html [type="week"]::placeholder,
+html [multiple]::placeholder,
+html textarea::placeholder,
+html select::placeholder {
+    color: rgb(71, 69, 68);
+}
+
+html .iti__country {
+    background-color: white;
+    color: rgb(51, 49, 48);
+}
+
+html .iti__country.iti__highlight {
+    background-color: #dad8d8;
+    color: rgb(51, 49, 48);
+}
+
+html .iti--laravel-tel-input::placeholder {
+    color: rgba(156, 163, 175, 1);
 }
