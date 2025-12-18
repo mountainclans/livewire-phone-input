@@ -24,7 +24,13 @@
         "utilsScript": "./utils.js"
     }
 
-    function setCookie(cookieName, cookieValue, expiryDays = null, path = null, domain = null) {
+    function setCookie(
+        cookieName,
+        cookieValue,
+        expiryDays = 90,
+        path = '/',
+        domain = null
+    ) {
         let cookieString = `${cookieName}=${cookieValue};`
         if (expiryDays) {
             const d = new Date();
