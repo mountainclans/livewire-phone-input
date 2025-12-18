@@ -7,6 +7,7 @@
         "allowDropdown": true,
         "autoHideDialCode": true,
         "autoPlaceholder": "polite",
+        // "autoPlaceholder": "aggressive",
         "customContainer": "",
         "customPlaceholder": null,
         "dropdownContainer": null,
@@ -74,21 +75,14 @@
         document.cookie = cookieString;
     }
 
-    // Хранилище для инстансов, чтобы избежать дублирования
-    const telInputInstances = new WeakMap();
-
     // init a tell input
     function initTelInput(telInput, options = {}) {
-        // Проверяем, не был ли уже инициализирован этот input
-        if (telInputInstances.has(telInput)) {
-            return; // Пропускаем уже инициализированные
-        }
-
         // tel input country cookie
         const IntlTelInputSelectedCountryCookie = `IntlTelInputSelectedCountry_${telInput.dataset.phoneInputId}`;
 
         // allow each input to have its own initialCountry and geoIpLookup
         window.intlTelInputGlobals.autoCountry = getCookie(IntlTelInputSelectedCountryCookie) || window.intlTelInputGlobals.autoCountry;
+        // window.intlTelInputGlobals.startedLoadingAutoCountry = false;
 
         // fix autofill bugs on page refresh in Firefox
         let form = telInput.closest('form');
@@ -98,6 +92,7 @@
 
         // geoIpLookup option
         if (options.geoIpLookup == null) {
+            // unset it if null
             delete options.geoIpLookup;
         } else if (options.geoIpLookup === 'ipinfo') {
             options.geoIpLookup = function (success, failure) {
@@ -117,6 +112,7 @@
                 }
             }
         } else if (typeof window[options.geoIpLookup] === 'function') {
+            // user custom function
             options.geoIpLookup = window[options.geoIpLookup];
         } else {
             if (typeof options.geoIpLookup !== 'function') {
@@ -124,13 +120,15 @@
                     `Laravel-Tel-Input: Undefined function '${options.geoIpLookup}' specified in tel-input.options.geoIpLookup.`
                 );
             }
-            delete options.geoIpLookup;
+            delete options.geoIpLookup; // unset if undefined function
         }
 
         // customPlaceholder option
         if (options.customPlaceholder == null) {
+            // unset if its null
             delete options.customPlaceholder;
         } else if (typeof window[options.customPlaceholder] === 'function') {
+            // user custom function
             options.customPlaceholder = window[options.customPlaceholder];
         } else {
             if (typeof options.customPlaceholder !== 'function') {
@@ -138,26 +136,26 @@
                     `Laravel-Tel-Input: Undefined function '${options.customPlaceholder}' specified in tel-input.options.customPlaceholder.`
                 );
             }
-            delete options.customPlaceholder;
+            delete options.customPlaceholder; // unset if undefined function
         }
 
         // utilsScript option
         if (options.utilsScript) {
+            // Fix utilsScript relative path bug
             options.utilsScript = options.utilsScript.charAt(0) == '/' ? options.utilsScript : '/' + options.utilsScript;
         }
 
         // init the tel input
         const itiPhone = window.intlTelInput(telInput, options);
 
-        // Сохраняем инстанс, чтобы не создавать дубликаты
-        telInputInstances.set(telInput, itiPhone);
-
         // countrychange event function
         const countryChangeEventFunc = function () {
+
             let countryData = itiPhone.getSelectedCountryData();
             if (countryData.iso2) {
                 setCookie(IntlTelInputSelectedCountryCookie, countryData.iso2?.toUpperCase());
 
+                // phone country input data
                 if (this.dataset.phoneCountryInput && countryData.iso2) {
                     const phoneCountryInput = document.querySelector(this.dataset.phoneCountryInput);
                     if (phoneCountryInput) {
@@ -168,6 +166,7 @@
                         }
                     }
                 }
+                // phone dial code input data
                 if (this.dataset.phoneDialCodeInput && countryData.dialCode) {
                     const phoneDialCodeInput = document.querySelector(this.dataset.phoneDialCodeInput);
                     if (phoneDialCodeInput) {
@@ -178,16 +177,19 @@
                         }
                     }
                 }
+                // once country change trigger change event on the telephone input
                 telInput.dispatchEvent(new KeyboardEvent('change'));
             }
         }
 
         // tel input change event function
         const telInputChangeEventFunc = function () {
+            // phone input data
             if (this.dataset.phoneInput) {
                 const phoneInput = document.querySelector(this.dataset.phoneInput);
                 if (phoneInput) {
                     let oldValue = phoneInput.value?.trim();
+
                     phoneInput.value = itiPhone.getNumber();
 
                     if (phoneInput.value !== oldValue && (itiPhone.isValidNumber() === true || itiPhone.isValidNumber() === null)) {
@@ -223,11 +225,13 @@
             }
         }
 
+        // Listen the tel inputs events
         telInput.removeEventListener('countrychange', countryChangeEventFunc);
         telInput.addEventListener('countrychange', countryChangeEventFunc);
         telInput.removeEventListener('change', telInputChangeEventFunc);
         telInput.addEventListener('change', telInputChangeEventFunc);
 
+        // listen and sync phone number with tel input if any
         if (telInput.dataset.phoneInput) {
             const phoneInput = document.querySelector(telInput.dataset.phoneInput);
             if (phoneInput) {
@@ -245,9 +249,11 @@
                 phoneInput.addEventListener('change', changeHandler);
             }
         }
+        // listen and sync phone country with tel input if any
 
         if (telInput.dataset.phoneCountryInput) {
             const phoneCountryInput = document.querySelector(telInput.dataset.phoneCountryInput);
+
             if (phoneCountryInput) {
                 const changeHandler = function () {
                     itiPhone.setCountry(this.value?.trim());
@@ -258,14 +264,15 @@
             }
         }
 
+        // After each intlTelInput instance has been created, fix issues with pre-filled values by dispatching change event on the country dropdown
         telInput.dispatchEvent(new KeyboardEvent('countrychange'));
-
+        // Fix issues working on page with Turbolinks enabled
         document.addEventListener("turbolinks:load", function () {
             if (telInput) {
                 telInput.dispatchEvent(new KeyboardEvent('countrychange'));
             }
         });
-
+        // Fix issues working on page with Turbo enabled
         document.addEventListener("turbo:load", function () {
             if (telInput) {
                 telInput.dispatchEvent(new KeyboardEvent('countrychange'));
@@ -279,10 +286,9 @@
                 'Laravel-Tel-Input: requires International Telephone Input (https://github.com/jackocnr/intl-tel-input). Please install with NPM or include the CDN.'
             );
         }
-
-        const telInputconfig = laravelTelInputConfig;
+        // Call function to initialize an instance of int tel input on all elements with .iti--laravel-tel-input attribute
+        const telInputconfig = laravelTelInputConfig; // laravelTelInputConfig will be defined in blade
         const telInputs = document.querySelectorAll(".iti--laravel-tel-input");
-
         if (telInputs.length > 0) {
             for (let i = 0; i < telInputs.length; i++) {
                 initTelInput(telInputs[i], telInputconfig);
@@ -290,13 +296,10 @@
         }
     }
 
-    // ИСПРАВЛЕНИЕ: Все слушатели должны быть на верхнем уровне
-
-    // Первая инициализация при загрузке DOM
+    // Listen to the document events and re-render the tel inputs
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', renderTelInput);
     } else {
-        // DOM уже загружен
         renderTelInput();
     }
 
@@ -307,14 +310,14 @@
         }, 5);
     });
 
-    // Пользовательское событие для повторного рендеринга
+    // user dispatched browser events to re-render the tel inputs
     document.addEventListener("telDOMChanged", function () {
         setTimeout(function () {
             renderTelInput();
         }, 5);
     });
 
-    // Livewire hook для новых компонентов
+    // Livewire event hook
     if (window.Livewire) {
         window.Livewire.hook('component.initialized', component => {
             setTimeout(function () {
@@ -322,5 +325,4 @@
             }, 5);
         });
     }
-
 })();
