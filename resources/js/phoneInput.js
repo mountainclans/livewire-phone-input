@@ -297,20 +297,12 @@
     }
 
     // Listen to the document events and re-render the tel inputs
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', renderTelInput);
-    } else {
-        renderTelInput();
-    }
-
-    // Livewire navigation
     document.addEventListener("livewire:navigated", function () {
         setTimeout(function () {
             renderTelInput();
-        }, 5);
+        }, 50);
     });
 
-    // user dispatched browser events to re-render the tel inputs
     document.addEventListener("telDOMChanged", function () {
         setTimeout(function () {
             renderTelInput();
