@@ -3,6 +3,7 @@
      'name',
      'id',
      'defaultClasses' => true,
+     'initialCountry' => 'ES',
 ])
 
 @php
@@ -16,6 +17,30 @@
 @endphp
 
 <div class="w-full">
+    @teleport('body')
+    <script>
+        var laravelTelInputConfig = {
+            "allowDropdown": true,
+            "autoHideDialCode": true,
+            "autoPlaceholder": "polite",
+            "customContainer": "",
+            "customPlaceholder": null,
+            "dropdownContainer": null,
+            "excludeCountries": [],
+            "formatOnDisplay": true,
+            "geoIpLookup": "ipinfo",
+            "initialCountry": '{{ $initialCountry }}',
+            "localizedCountries": [],
+            "nationalMode": true,
+            "onlyCountries": [],
+            "placeholderNumberType": "MOBILE",
+            "preferredCountries": ["ES", "DE", "RU", "US", "GB", "KZ"],
+            "separateDialCode": false,
+            "utilsScript": "./utils.js"
+        }
+    </script>
+    @endteleport
+
     @if ($label)
         <div class="flex justify-between items-center">
             <label for="{{ $name }}"

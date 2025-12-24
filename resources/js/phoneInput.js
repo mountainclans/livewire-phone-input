@@ -1,28 +1,6 @@
 // LaravelTelInput
 (function () {
-
     'use strict';
-
-    const laravelTelInputConfig = {
-        "allowDropdown": true,
-        "autoHideDialCode": true,
-        "autoPlaceholder": "polite",
-        // "autoPlaceholder": "aggressive",
-        "customContainer": "",
-        "customPlaceholder": null,
-        "dropdownContainer": null,
-        "excludeCountries": [],
-        "formatOnDisplay": true,
-        "geoIpLookup": "ipinfo",
-        "initialCountry": "ES",
-        "localizedCountries": [],
-        "nationalMode": true,
-        "onlyCountries": [],
-        "placeholderNumberType": "MOBILE",
-        "preferredCountries": ["ES", "DE", "RU", "US", "GB"],
-        "separateDialCode": false,
-        "utilsScript": "./utils.js"
-    }
 
     function setCookie(
         cookieName,

@@ -52,6 +52,7 @@ _Обратите внимание, что для корректной стил�
                   id="phone"
                   class="additional-class-here"
                   :default-classes="false"
+                  initial-country="RU"
 />
 ```
 
