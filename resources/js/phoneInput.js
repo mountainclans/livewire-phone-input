@@ -2,6 +2,28 @@
 (function () {
     'use strict';
 
+    if (laravelTelInputConfig === undefined) {
+        var laravelTelInputConfig = {
+            "allowDropdown": true,
+            "autoHideDialCode": true,
+            "autoPlaceholder": "polite",
+            "customContainer": "",
+            "customPlaceholder": null,
+            "dropdownContainer": null,
+            "excludeCountries": [],
+            "formatOnDisplay": true,
+            "geoIpLookup": "ipinfo",
+            "initialCountry": '{{ $initialCountry }}',
+            "localizedCountries": [],
+            "nationalMode": true,
+            "onlyCountries": [],
+            "placeholderNumberType": "MOBILE",
+            "preferredCountries": ["ES", "DE", "RU", "US", "GB", "KZ"],
+            "separateDialCode": false,
+            "utilsScript": "./utils.js"
+        }
+    }
+
     function setCookie(
         cookieName,
         cookieValue,
