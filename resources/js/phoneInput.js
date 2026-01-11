@@ -2,6 +2,8 @@
 (function () {
     'use strict';
 
+    laravelTelInputConfig = window.laravelTelInputConfig;
+
     if (laravelTelInputConfig === undefined) {
         var laravelTelInputConfig = {
             "allowDropdown": true,
