@@ -37,6 +37,33 @@ _Обратите внимание, что для корректной стил�
 './vendor/mountainclans/livewire-phone-input/resources/views/**/*.blade.php'
 ```
 
+Добавьте переменную с параметрами конфигурации в подвал:
+
+```bladehtml
+<script>
+    window.laravelTelInputConfig = {
+        "allowDropdown": true,
+        "autoHideDialCode": true,
+        "autoPlaceholder": "polite",
+        "customContainer": "",
+        "customPlaceholder": null,
+        "dropdownContainer": null,
+        "excludeCountries": [],
+        "formatOnDisplay": true,
+        "geoIpLookup": "ipinfo",
+        "initialCountry": '{{ $phonePreferredCountry }}',
+        "localizedCountries": [],
+        "nationalMode": true,
+        "onlyCountries": [],
+        "placeholderNumberType": "MOBILE",
+        "preferredCountries": ["ES", "DE", "RU", "US", "GB", "KZ"],
+        "separateDialCode": false,
+        "utilsScript": "./utils.js"
+    }
+</script>
+```
+**Обязательно переопределите** `$phonePreferredCountry`!
+
 ---
 
 ## Использование
