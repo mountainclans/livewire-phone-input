@@ -13,7 +13,7 @@
             "excludeCountries": [],
             "formatOnDisplay": true,
             "geoIpLookup": "ipinfo",
-            "initialCountry": '{{ $initialCountry }}',
+            "initialCountry": 'GB',
             "localizedCountries": [],
             "nationalMode": true,
             "onlyCountries": [],
