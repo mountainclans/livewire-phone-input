@@ -64,6 +64,19 @@ _Обратите внимание, что для корректной стил�
 ```
 **Обязательно переопределите** `$phonePreferredCountry`!
 
+Пример функции для получения этой переменной:
+
+```php
+public function preferredPhoneInputLocale(): string
+{
+   return match(app()->currentLocale()) {
+       'ru' => 'RU',
+       'kk' => 'KZ',
+       default => 'GB',
+   };
+}
+```
+
 ---
 
 ## Использование
