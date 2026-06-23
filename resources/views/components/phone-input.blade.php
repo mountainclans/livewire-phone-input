@@ -53,8 +53,6 @@
                @endif
                @if ($attributes->has('phone-country-input'))
                    data-phone-country-input="#{{ $attributes->get('phone-country-input') }}"
-               @else
-                   @dd($attributes->all())
                @endif
                @if ($attributes->has('placeholder'))
                    placeholder="{{ $attributes->get('placeholder') }}"
